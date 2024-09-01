@@ -30,8 +30,8 @@ export const Navbar = () => {
       </div>
 
       <div className="flex items-center justify-center space-x-10 py-4 text-sm font-bold">
-         <NavLink className="hover:underline">Cart</NavLink>
-         <NavLink className="hover:underline">Shop</NavLink>
+         <NavLink to="/" className="hover:underline">Cart</NavLink>
+         <NavLink to="/shop" className="hover:underline">Shop</NavLink>
          <NavLink className="hover:underline">Contact</NavLink>
          <NavLink className="hover:underline">About</NavLink>
       </div>

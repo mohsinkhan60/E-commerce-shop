@@ -34,7 +34,7 @@ export const mackData = [
    },
    {
       id: 5,
-      img: "https://img.freepik.com/free-vector/gradient-product-card-template_23-2149656335.jpg",
+      img: "https://cdn.pixabay.com/photo/2017/08/20/10/39/leather-shoes-2661249_640.jpg",
       name: "Product 5",
       price: 39.1,
    },

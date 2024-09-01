@@ -1,8 +1,17 @@
-import { Categories } from "../assets/mockData";
+import { useEffect } from "react";
+import { Categories, mackData } from "../assets/mockData";
 import Category from "../components/Category";
 import InfoSection from "../components/InfoSection";
+import { setProducts } from "../redux/productSlice";
+import { useDispatch, useSelector } from "react-redux";
+import ProductCard from "../components/ProductCard";
 
 export const Home = () => {
+  const dispatch = useDispatch();
+  const { products } = useSelector((state) => state.product);
+  useEffect(() => {
+    dispatch(setProducts(mackData));
+  },[dispatch]);  
   return (
     <div className="bg-white mt-2 px-4 md:px-16 lg:px-24">
       <div className="container mx-auto py-4 flex flex-col md:flex-row space-x-2">
@@ -33,6 +42,17 @@ export const Home = () => {
       </div>
       <InfoSection />
       <Category />
+      
+      <div className="mt-10 mx-auto container py-12 gp5">
+        <h2 className="text-3xl font-bold mb-6 text-center">Top Products</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-5 cursor-pointer">
+          {products.slice(0, 5).map((product, index) => (
+            <div key={index}>
+              <ProductCard product={product} />
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
           
   );
