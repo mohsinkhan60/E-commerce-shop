@@ -16,7 +16,7 @@ export const ProductCard = ({product}) => {
         <FaStar className="text-yellow-500" />
       </div>
       <div className="absolute bottom-4 right-2 flex items-center justify-center w-8 h-8 bg-red-600 group text-white text-md rounded-full hover:w-32 hover:bg-red-700 transition-all">
-        <span className="text-[1.5rem] group-hover:hidden">+</span>
+        <span className="text-[rem] group-hover:hidden">+</span>
         <span className="hidden group-hover:block">Add to cart</span>
       </div>
     </div>
