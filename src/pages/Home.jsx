@@ -1,4 +1,5 @@
 import { Categories } from "../assets/mockData";
+import Category from "../components/Category";
 import InfoSection from "../components/InfoSection";
 
 export const Home = () => {
@@ -31,6 +32,7 @@ export const Home = () => {
         </div>
       </div>
       <InfoSection />
+      <Category />
     </div>
           
   );
