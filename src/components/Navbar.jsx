@@ -1,8 +1,22 @@
+import { useState } from "react";
 import { FaSearch, FaShoppingCart, FaUser } from "react-icons/fa";
 import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+import Model from "./Model";
+import LogIn from "./LogIn";
+import Register from "./Register";
 
 export const Navbar = () => {
+  const [isModelOpen, setIsModelOpen] = useState(false);
+  const [isLogin, setIsLogin] = useState(true);
+  const openSignUp = () => {
+    setIsLogin(false);
+    setIsModelOpen(true);
+  }
+  const openLogIn = () => {
+    setIsLogin(true);
+    setIsModelOpen(true);
+  }
   const products = useSelector((state) => state.cart.products);
   return (
     <nav className="bg-white shadow-md">
@@ -29,7 +43,7 @@ export const Navbar = () => {
               </span>
             )}
           </NavLink>
-          <button className="hidden md:block">Login | Register</button>
+          <button className="hidden md:block" onClick={() => setIsModelOpen(true)}>Login | Register</button>
           <button className="block md:hidden">
             <FaUser />
           </button>
@@ -42,6 +56,7 @@ export const Navbar = () => {
          <NavLink className="hover:underline">Contact</NavLink>
          <NavLink className="hover:underline">About</NavLink>
       </div>
+      <Model isModelOpen={isModelOpen} setIsModelOpen={setIsModelOpen}>{isLogin ? <LogIn openSignUp={openSignUp} /> : <Register  openLogIn={openLogIn} />}</Model>
     </nav>
   );
 };
