@@ -28,9 +28,42 @@ export const cartSlice = createSlice({
       }
       state.totalPrice += newItem.price;
       state.totalQuantity++;
-    }
+    },
+    removeFromCart (state, action) {
+      const id = action.payload;
+      const findItem = state.products.find((item) => item.id === id)
+      if(findItem){
+        state.totalPrice -= findItem.totalPrice;
+        state.totalQuantity -= findItem.quantity;
+        state.totalQuantity--;
+        state.products = state.products.filter((item) => item.id !== id)
+      
+    }},
+    incrementQuantity (state, action) {
+      const id = action.payload;
+      const findItem = state.products.find((item) => item.id === id)
+      if(findItem){
+        findItem.quantity++;
+        findItem.totalPrice += findItem.price
+        state.totalPrice += findItem.price;
+        state.totalQuantity++;
+      }
+    },
+    decrementQuantity (state, action) {
+      const id = action.payload;
+      const findItem = state.products.find((item) => item.id === id)
+      if(findItem.quantity > 1){
+      if(findItem){
+        findItem.quantity--;
+        findItem.totalPrice -= findItem.price
+        state.totalPrice -= findItem.price;
+        state.totalQuantity--;
+        
+          
+        }
+      }},
   },
 });
 
-export const { addToCart } = cartSlice.actions;
+export const { addToCart, removeFromCart, incrementQuantity, decrementQuantity  } = cartSlice.actions;
 export default cartSlice.reducer;
