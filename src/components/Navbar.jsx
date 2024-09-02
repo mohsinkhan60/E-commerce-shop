@@ -1,14 +1,23 @@
 import { useState } from "react";
 import { FaSearch, FaShoppingCart, FaUser } from "react-icons/fa";
-import { useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { NavLink, useNavigate } from "react-router-dom";
 import Model from "./Model";
 import LogIn from "./LogIn";
 import Register from "./Register";
+import { setSearchTerm } from "../redux/productSlice";
 
 export const Navbar = () => {
   const [isModelOpen, setIsModelOpen] = useState(false);
   const [isLogin, setIsLogin] = useState(true);
+  const dispatch = useDispatch();
+  const [search, setSearch] = useState("");
+  const navigate = useNavigate();
+  const handleSearch = (e) => {
+    e.preventDefault();
+    dispatch(setSearchTerm(search));
+    navigate("/filter-data");
+  }
   const openSignUp = () => {
     setIsLogin(false);
     setIsModelOpen(true);
@@ -25,9 +34,10 @@ export const Navbar = () => {
           <NavLink to="/">Mohsin Dev</NavLink>
         </div>
         <div className="relative flex-1 mx-4">
-          <form>
+          <form onSubmit={handleSearch}>
             <input
               className="w-full border py-2 px-4 rounded-[2rem] "
+              onChange={(e) => setSearch(e.target.value)}
               type="text"
               placeholder="Search Products..."
             />

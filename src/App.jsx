@@ -7,6 +7,7 @@ import Cart from "./components/Cart";
 import CheckOut from "./pages/CheckOut";
 import { useState } from "react";
 import Order from "./pages/Order";
+import FilterData from "./pages/FilterData";
 
 export const App = () => {
   const [order, setOrder] = useState(null);
@@ -19,6 +20,7 @@ export const App = () => {
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkOut" element={<CheckOut setOrder={setOrder} />} />
         <Route path="/order-confirmation" element={<Order order={order} />} />
+        <Route path="/filter-data" element={<FilterData />} />
       </Routes>
       <Footer />
     </BrowserRouter>
